@@ -87,6 +87,7 @@ for (const product of products){
     $em.textContent = `$${product.price}`
     $strong.appendChild($em)
     $price.appendChild($strong)
+    $priceContainer.appendChild($price)
 
     //create the buy button: $buyButton
     const $buyButton = document.createElement('button')
