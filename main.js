@@ -11,6 +11,7 @@ const products = [
     { id: 9, title: 'Teal T-Shirt', image: 'teal-t-shirt.jpg', price: 7.99, stock: 2, quantity: 1 }
 ]
 const categories = ['All', 'T-shrts', 'Electronics', 'Furniture']
+const newCategory = 'Sandal'
 const selectedCategory = 'Electronics'
 
 
@@ -19,20 +20,29 @@ const selectedCategory = 'Electronics'
 const $categories = document.getElementById('categories')
 $categories.innerHTML = ''
 const templates = []
-for(const category of categories){
-templates.push(`<li class="nav-item">
-<a href="#"  class="nav-link btn btn-light btn-sm rounded-0 mx-1 ${category === selectedCategory ? 'active' : '' }">${category}</a>
-</li>
-`)
 
-}
+// for(const category of categories){
+categories.forEach( category => templates.push(`<li class="nav-item">
+    <a href="#"  class="nav-link btn btn-light btn-sm rounded-0 mx-1 ${category === selectedCategory ? 'active' : '' }">${category}</a>
+    </li>
+    ` ) // closes push
+) //closes forEach
+
+// }
 
 $categories.innerHTML = templates.join('')
-// 2. Add a new category with innerHTML
 
 // 3. Add a new category with insertAdjacentHTML
+$categories.insertAdjacentHTML('beforeend', `<li class="nav-item">
+    <a href="#"  class="nav-link btn btn-light btn-sm rounded-0 mx-1 ${newCategory === selectedCategory ? 'active' : '' }">${newCategory}</a>
+    </li>
+    `)
+
 
 // 4. Display products
+
+
+
 
 // 5. Use createElement to display products
 
