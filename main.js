@@ -33,10 +33,10 @@ categories.forEach( category => templates.push(`<li class="nav-item">
 $categories.innerHTML = templates.join('')
 
 // 3. Add a new category with insertAdjacentHTML
-$categories.insertAdjacentHTML('beforeend', `<li class="nav-item">
-    <a href="#"  class="nav-link btn btn-light btn-sm rounded-0 mx-1 ${newCategory === selectedCategory ? 'active' : '' }">${newCategory}</a>
-    </li>
-    `)
+// $categories.insertAdjacentHTML('beforeend', `<li class="nav-item">
+//     <a href="#"  class="nav-link btn btn-light btn-sm rounded-0 mx-1 ${newCategory === selectedCategory ? 'active' : '' }">${newCategory}</a>
+//     </li>
+//     `)
 
 
 // 4. Display products
@@ -45,12 +45,47 @@ $categories.insertAdjacentHTML('beforeend', `<li class="nav-item">
 
 
 // 5. Use createElement to display products
+const $products = document.getElementById('products')
 
+products.forEach( product => {
     //create the main div element: $product
+    const $product = document.createElement('div')
+    $product.className = "col col-12 col-md-6 col-lg-4 p-3 bg-light"
     //create the image element: $image
+    const $image = document.createElement('img')
+    $image.className = "img-fluid"
+    $image.src = `images/${product.image}`
+    $image.alt = product.title
+    $product.appendChild($image)
+    // console.log($image)
+    // console.log($product)
+
     //create the title element: $title
+    const $title = document.createElement('h2')
+    $title.textContent = product.title
+    $product.appendChild($title)
+    console.log($product)
     //create the container for price and buy button: $priceContainer
+    const $priceContainer = document.createElement('div')
+    $priceContainer.className ="d-flex justify-content-between"
+
     //create the price element: $price
+    const $price = document.createElement('p')
+    const $strong = document.createElement('strong')
+    const $em = document.createElement('em')
+    $em.textContent = product.price
+    $strong.appendChild($em)
+    $price.appendChild($strong)
+    $priceContainer.appendChild($price)
+
     //create the buy button: $buyButton
+    const $buyButton = document.createElement('button')
+    $buyButton.className = "btn btn-secondary rounded-0"
+    $buyButton.textContent = "Buy"
+    $priceContainer.appendChild($buyButton)
     //append the price element and buy button to the price container
+    $product.appendChild($priceContainer)
     //append the product to the products container
+    $products.appendChild($product)
+
+}  )
